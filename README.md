@@ -1,55 +1,57 @@
-# Дампы Томска в wplace.live
+# Dumps of Surabaya in wplace.live
+>forked from [wplace-tomsk](https://github.com/niklinque/wplace-tomsk)
 
-## Ежедневные таймлапсы из этих дампов в этом [репозитории](https://github.com/niklinque/wplace-tomsk-timelapse) и [телеграм-канале](https://t.me/wplacetomsktimelapse)
+## Daily timelapses from these dumps are in this [repository](https://github.com/niklinque/wplace-tomsk-timelapse) and ~~this [Telegram channel](https://t.me/wplacetomsktimelapse)~~~~
 
-Этот проект автоматически загружает тайлы изображений Томска с сайта wplace.live каждые 5 минут и объединяет их в одну большую картинку.
+This project automatically downloads image tiles of Surabaya from wplace.live every 5 minutes and merges them into one large picture.
 
-## Файлы проекта
+## Project Files
 
-- `download_and_merge_tiles.py` - Скрипт для загрузки и объединения изображений
-- `requirements.txt` - Зависимости Python
-- `.github/workflows/download-tiles.yml` - GitHub Actions workflow для загрузки дампов
-- `output/` - Директория с результатами
+- `download_and_merge_tiles.py` - Script to download and merge tiles
+- `requirements.txt` - Python dependencies
+- `.github/workflows/download-tiles.yml` - GitHub Actions workflow to download dumps
+- `output/` - Directory with results
 
-## Возможности
+## Features
 
-#### Загрузка дампов
-- 🔄 **Загрузка 9 тайлов по ссылкам**
-- 🖼️ **Объединение в одно изображение 9000x9000 с увеличенными пикселями**
-- 🔀 **Автоматический commit изменений**
+#### Dump Downloading
+- 🔄 **Downloads 9 tiles via direct links**
+- 🖼️ **Merges them into a single 9000x9000 image with enlarged pixels**
+- 🔀 **Automatically commits changes**
 
-## Результаты
+## Results
 
-### Изображения (папка `output/YYYYMMDD`)
-- `merged_tiles_YYYYMMDD_HHMMSS.png` - файл с временной меткой (9000x9000 пикселей)
+### Images (folder `output/YYYYMMDD`)
+- `merged_tiles_YYYYMMDD_HHMMSS.png` - timestamped file (9000x9000 pixels)
 
-## Настройка автоматизации
+## Automation Setup
 
-### Активация GitHub Actions
-1. Форкните или клонируйте репозиторий
-2. Убедитесь, что Actions включены в настройках репозитория
+### Enable GitHub Actions
+1. Fork or clone the repository
+2. Make sure Actions are enabled in repo settings
 
-### Запуск workflow через cron-job.org
-1. Создайте токен Github и дайте права: Actions → read and write и Workflows → read and write
-2. Создайте cron-задание, выберите график выполнения
-3. В URL вставьте `https://api.github.com/repos/USER/REPO/actions/workflows/download-tiles.yml/dispatches`
-4. Во вкладке "Расширенное" заполните заголовки
+### Trigger workflow via cron-job.org
+1. Create a GitHub token with permissions: Actions → read and write, Workflows → read and write
+2. Create a cron job and choose the schedule
+3. Use this URL:
+   `https://api.github.com/repos/USER/REPO/actions/workflows/download-tiles.yml/dispatches`
+4. In the "Advanced" tab add headers:
    ```
    Authorization: token GITHUB_TOKEN
    Accept: application/vnd.github.v3+json
    ```
-6. Сохраните настройку, теперь задача автоматизирована
+6. Save. The task is now automated.
 
-## Ручной запуск
+## Manual Run
 ```bash
-# Установка зависимостей
+# Install dependencies
 pip install -r requirements.txt
 
-# Запуск скрипта загрузки дампов
+# Run the dump download script
 python download_and_merge_tiles.py
 ```
 
-## Требования
+## Requirements
 
 - Python 3.11+
-- Библиотеки: `requests`, `Pillow`
+- Libraries: `requests`, `Pillow`
